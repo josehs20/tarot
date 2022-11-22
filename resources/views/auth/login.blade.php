@@ -1,11 +1,12 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="css/login/css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="container">
+        {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Entrar') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -54,7 +55,7 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Entrar') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
@@ -68,6 +69,81 @@
                 </div>
             </div>
         </div>
+     </div> --}}
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-7 col-lg-5">
+                        <div class="wrap">
+                            <div class="img" style="background-image: url(imgs/logo.jpg);"></div>
+                            <div class="login-wrap p-4 p-md-5">
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <h3 class="mb-4">Entrar</h3>
+                                    </div>
+                                    {{-- <div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+									</p>
+								</div> --}}
+                                </div>
+                                <form class="signin-form" method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group mt-3">
+                                        <label class="" for="username">Email</label>
+                                        <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                            required autocomplete="email" autofocus
+                                            class="form-control @error('email') is-invalid @enderror">
+
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="" for="password">Senha</label>
+                                        <input id="password" type="password"
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            required autocomplete="current-password">
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="form-control btn btn rounded submit px-3"
+                                            style="background: #ffef2b;">Entrar</button>
+                                    </div>
+
+                                    <div class="form-group d-md-flex">
+                                        <div class="w-50 text-left">
+                                            <label class="checkbox-wrap mb-0">Lembrar-me
+                                                <input type="checkbox" checked>
+                                                <span class="checkmark"
+                                                    style="background-color: #ffef2b; !important"></span>
+                                            </label>
+                                        </div>
+                                        {{-- <div class="w-50 text-md-right">
+                                                        <a href="#">Forgot Password</a>
+                                                    </div> --}}
+                                    </div>
+                                </form>
+                                {{-- <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-</div>
+    <script src="js/login/js/jquery.min.js"></script>
+    <script src="js/login/js/popper.js"></script>
+    <script src="js/login/js/bootstrap.min.js"></script>
+    <script src="js/login/js/main.js"></script>
 @endsection
