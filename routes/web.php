@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AtendentesController;
+use App\Http\Controllers\Admin\Dashboard\AtendimentoController;
+use App\Http\Controllers\Admin\Dashboard\EstatisticaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +23,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('admin')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    //DASHBOARD
+    Route::resource('/estatisticas', EstatisticaController::class);
+    Route::resource('/atendimentos', AtendimentoController::class);
+    //ATENDENTES
+    Route::resource('/atendentes', AtendentesController::class);
+    Route::get('/get_usuarios', [\App\Http\Controllers\Admin\AtendentesController::class, 'get_usuarios']);
+
+
+});
+
