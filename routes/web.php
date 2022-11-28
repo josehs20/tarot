@@ -22,9 +22,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('admin')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //DASHBOARD
     Route::resource('/estatisticas', EstatisticaController::class);
     Route::resource('/atendimentos', AtendimentoController::class);
@@ -32,6 +32,5 @@ Route::middleware('admin')->group(function () {
     Route::resource('/atendentes', AtendentesController::class);
     Route::get('/get_usuarios', [\App\Http\Controllers\Admin\AtendentesController::class, 'get_usuarios']);
 
-
+    Route::put('/update-status', [\App\Http\Controllers\Admin\AtendentesController::class, 'update_status']);
 });
-

@@ -16,6 +16,7 @@ class Atendente extends Model
         'conectado',
         'situacao',
         'status',
-        'comissao'
+        'descricao',
+        'comissao',
     ];
 }

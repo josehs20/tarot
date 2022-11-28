@@ -1,4 +1,7 @@
 "use strict";
+$(document).ready(function () {
+    $('input[name=comissao]').mask('##0,00', {reverse: true});
+  })
 
 function get_usuarios(nome) {
     $.ajax({
@@ -63,7 +66,6 @@ function validateForm() {
 
 function valida_names_atendetes(usuarios, dados) {
     var valid = true
-
 
     for (let i = 0; i < usuarios.length; i++) {
         const element = usuarios[i];
