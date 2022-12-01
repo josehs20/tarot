@@ -123,6 +123,7 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->delete();
+        return response()->json(['msg' =>  'Atendente excluído com sucesso']);
     }
 }

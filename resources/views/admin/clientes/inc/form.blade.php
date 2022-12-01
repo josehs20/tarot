@@ -26,7 +26,6 @@
     <label for="exampleInputEmail1" class="colorTextLabel">Sexo*</label>
 
     <select class="custom-select" id="sexo" name="sexo">
-
         <option {{ $user && $user->cliente->sexo == 'Masculino' ? 'selected' : '' }} value="Masculino">Masculino
         </option>
         <option {{ $user && $user->cliente->sexo == 'Feminino' ? 'selected' : '' }} value="Feminino">Feminino</option>
@@ -44,13 +43,12 @@
     <label for="exampleInputEmail1" class="colorTextLabel">Tempo*</label>
     <input type="text" name="tempo" class="form-control"
         value="{{ $user && $user->cliente->tempo ? $user->cliente->tempo : '' }}" required>
-        <small>Tempo em minutos e segundos MM:SS</small>
+    <small>Tempo em minutos e segundos MM:SS</small>
 </div>
 
 <div class="form-group">
     <label for="exampleInputPassword1" class="colorTextLabel">Senha*</label>
     <input type="password" name="senha" class="form-control" placeholder="Senha" {{ $user ? '' : 'required' }}>
- 
 </div>
 
 <div class="form-group">

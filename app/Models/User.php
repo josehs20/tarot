@@ -43,9 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function admin()
+    public function IsAdmin()
     {
         return $this->perfil == 'admin';
+    }
+
+    public function IsAtendente()
+    {
+        return $this->perfil == 'atendente';
     }
 
     public function atendente()

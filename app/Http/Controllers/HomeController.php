@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -24,13 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user() && auth()->user()->admin()) {
+        if (auth()->user() && auth()->user()->IsAdmin()) {
+
+            Session::flash('success', 'Bem vindo, ' . auth()->user()->name);
             return redirect()->route('estatisticas.index');
-        }else {
+        } elseif (auth()->user() && auth()->user()->IsAtendente()) {
+
+            Session::flash('success', 'Bem vindo, ' . auth()->user()->name);
+            return redirect()->route('monitor-atendimento.index');
+        } else {
             Auth::logout();
             return redirect()->route('home');
         }
- 
         //  view('admin.home');
     }
 }

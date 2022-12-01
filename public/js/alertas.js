@@ -10,3 +10,22 @@ function alertaMessagem(msg,icon, text = '', button = false) {
         timer: 2500
       })
 }
+
+function alertaSimples(msg, icon, time = 3000) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: time,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    icon: icon,
+    title: msg
+  })
+}

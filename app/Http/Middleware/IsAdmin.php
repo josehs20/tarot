@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user() && auth()->user()->admin()) {
+        if (auth()->user() && auth()->user()->IsAdmin()) {
             return $next($request);
         }
         return redirect()->back()->with('message', 'Sem premissão de acesso');

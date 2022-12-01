@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AtendentesController;
 use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\Dashboard\AtendimentoController;
 use App\Http\Controllers\Admin\Dashboard\EstatisticaController;
+use App\Http\Controllers\Atendente\MonitorAtendimentoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,13 +20,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cliente.inicio');
 });
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware('admin')->group(function () {
+Route::middleware('IsAtendente')->group(function (){
+    Route::resource('/monitor-atendimento', MonitorAtendimentoController::class);
+
+});
+
+Route::middleware('IsAdmin')->group(function () {
     //DASHBOARD
     Route::resource('/estatisticas', EstatisticaController::class);
     Route::resource('/atendimentos', AtendimentoController::class);

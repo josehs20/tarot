@@ -58,3 +58,33 @@ function update_status_cliente(status, id) {
     });
 
 }
+
+function delete_cliente(user, id) {
+    Swal.fire({
+        title: 'Deseja realmente excluir, ' + user + ' ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/clientes/' + id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'DELETE',
+                dataType: 'json',
+                success: function (resp) {
+                   alertaMessagem(resp.msg, 'success')
+                   setTimeout(function() {
+                    window.location.reload(true);
+                  }, 2500)
+                },
+                error: function (resp) {
+                    alertaMessagem('Não foi possível tente novamente em alguns instantes', 'error')
+                }
+            })
+        }
+    })
+}
