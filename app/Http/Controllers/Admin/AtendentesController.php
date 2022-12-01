@@ -19,8 +19,8 @@ class AtendentesController extends Controller
      */
     public function index(Request $request)
     {
-        $usuarios = User::with('atendente')->where('email', 'like', '%' . $request['nome'] . '%')->where('perfil', 'atendente')->get();
-
+        $usuarios = User::with('atendente')->where('name', 'like', '%' . $request->nome . '%')->where('perfil', 'atendente')->get();
+      
         return view('admin.atendentes.index', compact('usuarios'));
     }
 
@@ -135,10 +135,13 @@ class AtendentesController extends Controller
 
                 return redirect()->route('atendentes.edit', $id);
             }
+            Session::flash('error', 'Algo deu errado tente novamente');
+
+            return redirect()->route('atendentes.edit', $id);
         }
     }
 
-    public function update_status(Request $request)
+    public function update_status_atendente(Request $request)
     {
         $user = User::with('atendente')->find($request->id);
         $user->atendente->update(['status' => $request->status]);
@@ -154,7 +157,8 @@ class AtendentesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->delete();
+        return response()->json(['msg' =>  'Atendente excluído com sucesso']);
     }
 
     public function upload_imagem_avatar($request, $user)

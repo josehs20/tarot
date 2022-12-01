@@ -19,8 +19,20 @@
     <section id="main-content">
         <div class="card">
             <div class="card-body">
-                <a type="button" class="btn btn-primary float-right" href="{{ route('atendentes.create') }}">Cadastrar
-                    &ensp;<i class="bi bi-plus-square-fill"></i></a> <br><br>
+                <form action="{{ route('atendentes.index') }}" method="GET">
+                    @csrf
+                    <div class="form-group">
+                        <div class="d-flex justify-content-around">
+                            <input type="text" class="form-control col-md-8" name="nome" aria-describedby="emailHelp"
+                                placeholder="Buscar atendente">
+                            <button type="submit" class="btn btn-primary mx-1">Buscar</button>
+                            <a type="button" class="btn btn-primary float-right"
+                                href="{{ route('atendentes.create') }}">Cadastrar
+                                &ensp;<i class="bi bi-plus-square-fill"></i></a> <br><br>
+                        </div>
+                    </div>
+                </form>
+
                 @if (count($usuarios))
                     <table class="table table-hover">
                         <thead>
@@ -55,14 +67,17 @@
                                             <div class="dropdown-menu" style="cursor: pointer;">
                                                 <a class="dropdown-item"
                                                     href="{{ route('atendentes.edit', $user->id) }}">Editar</a>
-                                                @if ($user->atendente->status == 'Ativo')
-                                                    <a class="dropdown-item"
-                                                        onclick="desativarAtendente('<?php echo $user->name; ?>', '<?php echo $user->id; ?>')">Desativar</a>
-                                                @else
-                                                    <a class="dropdown-item"
-                                                        onclick="ativarAtendente('<?php echo $user->name; ?>', '<?php echo $user->id; ?>')">Ativar</a>
-                                                @endif
-                                                <a class="dropdown-item" href="#">Excluir</a>
+                                                {{-- @if ($user->atendente->status == 'Ativo') --}}
+                                                <a class="dropdown-item {{ $user->atendente->status == 'Ativo' ? '' : 'd-none' }}"
+                                                    id="buttonDesativar<?php echo $user->id; ?>"
+                                                    onclick="desativarAtendente('<?php echo $user->name; ?>', '<?php echo $user->id; ?>')">Desativar</a>
+                                                {{-- @else --}}
+                                                <a class="dropdown-item {{ $user->atendente->status == 'Desativado' ? '' : 'd-none' }}"
+                                                    id="buttonAtivar<?php echo $user->id; ?>"
+                                                    onclick="ativarAtendente('<?php echo $user->name; ?>', '<?php echo $user->id; ?>')">Ativar</a>
+                                                {{-- @endif --}}
+                                                <a class="dropdown-item"
+                                                    onclick="delete_atendente('<?php echo $user->name; ?>', '<?php echo $user->id; ?>');">Excluir</a>
                                             </div>
                                         </div>
                                     </td>
@@ -72,7 +87,7 @@
                     </table>
                 @else
                     <div class="alert alert-primary" role="alert">
-                        Nenhum atendente Cadastrado!
+                        Nenhum atendente Encontrado!
                     </div>
                 @endif
             </div>

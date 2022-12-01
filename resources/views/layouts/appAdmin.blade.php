@@ -147,7 +147,7 @@
 
 
                             <li><a href="{{ route('atendentes.index') }}"><i class="ti-user"></i> Atendentes</a></li>
-                            <li><a href="app-widget-card.html"><i class="bi bi-people"></i> Clientes</a></li>
+                            <li><a href="{{ route('clientes.index') }}"><i class="bi bi-people"></i> Clientes</a></li>
                             <li><a href="app-widget-card.html"><i class="bi bi-person-badge"></i> Contato</a></li>
                             <li><a href="app-widget-card.html"><i class="ti-comments-smiley"></i> Depoimentos</a></li>
                             <li><a href="app-widget-card.html"><i class="ti-shopping-cart-full"></i> Pedidos</a></li>
@@ -365,7 +365,9 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                                  document.getElementById('logout-form').submit();">
                                                             <i class="ti-power-off"></i>
                                                             <span>Logout</span>
                                                         </a>

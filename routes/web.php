@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AtendentesController;
+use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\Dashboard\AtendimentoController;
 use App\Http\Controllers\Admin\Dashboard\EstatisticaController;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,12 @@ Route::middleware('admin')->group(function () {
     Route::resource('/atendimentos', AtendimentoController::class);
     //ATENDENTES
     Route::resource('/atendentes', AtendentesController::class);
+        //ajax
     Route::get('/get_usuarios', [\App\Http\Controllers\Admin\AtendentesController::class, 'get_usuarios']);
+    Route::put('/update-status-atendente', [\App\Http\Controllers\Admin\AtendentesController::class, 'update_status_atendente']);
 
-    Route::put('/update-status', [\App\Http\Controllers\Admin\AtendentesController::class, 'update_status']);
+    //Clientes
+    Route::resource('/clientes', ClienteController::class);
+    Route::put('/update-status-cliente', [\App\Http\Controllers\Admin\ClienteController::class, 'update_status_cliente']);
+
 });

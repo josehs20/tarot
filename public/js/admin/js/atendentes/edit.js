@@ -1,8 +1,9 @@
+"use strict";
 $(document).ready(function () {
   $('input[name=comissao]').mask('##0,00', { reverse: true });
 })
 
-function vallidaFormUpdate() {
+function validaFormUpdate() {
   var img = document.querySelector('[name="img"]');
   var senha = document.querySelector('[name="senha"]').value
   var confirmSenha = document.querySelector('[name="confirmSenha"]').value

@@ -142,8 +142,26 @@
             </div>
         </section>
     </div>
-    <script src="js/login/js/jquery.min.js"></script>
-    <script src="js/login/js/popper.js"></script>
-    <script src="js/login/js/bootstrap.min.js"></script>
-    <script src="js/login/js/main.js"></script>
+    <script src="{{asset('js/alertas.js')}}"></script>
+    <script src="{{asset('js/login/js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/login/js/popper.js')}}"></script>
+    <script src="{{asset('js/login/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/login/js/main.js')}}"></script>
+
+    <script defer>
+        $(function($) {
+            var cookie = {};
+    
+            document.cookie.split(';').forEach(function(el) {
+                let [k, v] = el.split('=');
+                cookie[k.trim()] = v;
+            })
+            if (cookie.success) {
+                alertaMessagem('Cadastro realizado com sucesso', 'success')
+                document.cookie = "success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            }
+        });
+    </script>
+ 
 @endsection

@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Atendente');
     }
 
+    public function cliente()
+    {
+        return $this->hasOne('App\Models\Cliente');
+    }
+
     public function imagem()
     {
         return $this->hasOne('App\Models\Imagem');
