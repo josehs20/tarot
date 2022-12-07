@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->perfil == 'atendente';
     }
 
+    public function IsCliente()
+    {
+        return $this->perfil == 'cliente';
+    }
+
     public function atendente()
     {
         return $this->hasOne('App\Models\Atendente');

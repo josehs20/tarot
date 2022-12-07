@@ -49,7 +49,7 @@
                         </thead>
                         <tbody>
                             @foreach ($usuarios as $user)
-                            <tr>
+                            <tr id="cliente{{ $user->id }}">>
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>{{ $user->cliente->nome }}</td>
                                 <td>{{ $user->name }}</td>

@@ -74,30 +74,35 @@
                                 </ul>
                             </li>
 
+                            <li><a href="{{ route('atendentes.index') }}"><i class="ti-user"></i> Atendentes</a></li>
+                            <li><a href="{{ route('clientes.index') }}"><i class="bi bi-people"></i> Clientes</a></li>
+                          
+                            <li><a href="app-widget-card.html"><i class="ti-comments-smiley"></i> Depoimentos</a></li>
+                            <li><a href="app-widget-card.html"><i class="ti-shopping-cart-full"></i> Pedidos</a></li>
+                            <li><a href="{{route('index_tc_admin')}}"><i class="bi bi-briefcase"></i> Trabalhe Conosco<span
+                                class="badge badge-primary" id="countNotificacaoTabalheConosco"></span> </a></li>
+
+
                             <li><a class="sidebar-sub-toggle"><i class="bi bi-gear"></i>Configurações <span
                                         class="sidebar-collapse-icon ti-angle-down"></span></a>
                                 <ul>
-                                    <li><a href="app-widget-card.html"><i class="bi bi-person-vcard"></i> Programa
-                                            Fidelidade</a>
+                                    {{-- <li><a href="app-widget-card.html"><i class="bi bi-person-vcard"></i> Programa
+                                    Fidelidade</a>
+                            </li> --}}
+                                    <li><a href="app-widget-card.html"><i class="ti-user"></i> Conta</a></li>
+                                    <li><a href="app-widget-card.html"><i class="bi bi-person-badge"></i> Contato</a>
                                     </li>
                                     <li><a href="app-widget-card.html"><i class="bi bi-graph-down"></i> Promoções</a>
                                     </li>
+                                    <li><a href="app-widget-card.html"><i class="bi bi-bag-check"></i> Produtos</a></li>
                                     <li><a href="app-widget-card.html"><i class="ti-tag"></i> Quem Somos</a></li>
                                     <li><a href="app-widget-card.html"><i class="bi bi-type"></i> Slides De Texto</a>
                                     </li>
-                                    <li><a href="app-widget-card.html"><i class="bi bi-bag-check"></i> Produtos</a></li>
-                                    <li><a href="app-widget-card.html"><i class="ti-files"></i> Artigos</a></li>
-                                    <li><a href="app-widget-card.html"><i class="ti-user"></i> Conta</a></li>
+                                   
+                                    {{-- <li><a href="app-widget-card.html"><i class="ti-files"></i> Artigos</a></li> --}}
+
                                 </ul>
                             </li>
-
-
-                            <li><a href="{{ route('atendentes.index') }}"><i class="ti-user"></i> Atendentes</a></li>
-                            <li><a href="{{ route('clientes.index') }}"><i class="bi bi-people"></i> Clientes</a></li>
-                            <li><a href="app-widget-card.html"><i class="bi bi-person-badge"></i> Contato</a></li>
-                            <li><a href="app-widget-card.html"><i class="ti-comments-smiley"></i> Depoimentos</a></li>
-                            <li><a href="app-widget-card.html"><i class="ti-shopping-cart-full"></i> Pedidos</a></li>
-                            <li><a href="app-widget-card.html"><i class="bi bi-briefcase"></i> Trabalhe Conosco</a></li>
 
                             <li><a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -312,7 +317,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="{{ route('logout') }}"
-                                                        onclick="event.preventDefault();
+                                                            onclick="event.preventDefault();
                                                                   document.getElementById('logout-form').submit();">
                                                             <i class="ti-power-off"></i>
                                                             <span>Logout</span>

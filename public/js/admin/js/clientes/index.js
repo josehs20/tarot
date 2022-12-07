@@ -77,9 +77,7 @@ function delete_cliente(user, id) {
                 dataType: 'json',
                 success: function (resp) {
                    alertaMessagem(resp.msg, 'success')
-                   setTimeout(function() {
-                    window.location.reload(true);
-                  }, 2500)
+                   document.getElementById('cliente' + id).remove();
                 },
                 error: function (resp) {
                     alertaMessagem('Não foi possível tente novamente em alguns instantes', 'error')

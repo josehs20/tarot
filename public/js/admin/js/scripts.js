@@ -1,6 +1,18 @@
-(function($) {
-    "use strict";
+"use strict";
+(function ($) {
+    $(function () {
+        $.ajax({
+            url: '/count-notificacoes',
+            method: 'GET',
+            dataType: 'json',
+            success: function (resp) {
+                if (resp.curriculos != 0) {
+                    $('#countNotificacaoTabalheConosco').text(resp.curriculos)
+                }
+            }
+        });
 
+    })
 
     $(function () {
         for (var nk = window.location, o = $(".nano-content li a").filter(function () {
@@ -23,7 +35,7 @@
     Sidebar open close animated humberger icon
     ------------------------------------------------*/
 
-    $(".hamburger").on('click', function() {
+    $(".hamburger").on('click', function () {
         $(this).toggleClass("is-active");
     });
 
@@ -33,7 +45,7 @@
 
     /* TO DO LIST 
     --------------------*/
-    $(".tdl-new").on('keypress', function(e) {
+    $(".tdl-new").on('keypress', function (e) {
         var code = (e.keyCode ? e.keyCode : e.which);
         if (code == 13) {
             var v = $(this).val();
@@ -48,26 +60,54 @@
     });
 
 
-    $(".tdl-content a").on("click", function() {
+    $(".tdl-content a").on("click", function () {
         var _li = $(this).parent().parent("li");
-        _li.addClass("remove").stop().delay(100).slideUp("fast", function() {
+        _li.addClass("remove").stop().delay(100).slideUp("fast", function () {
             _li.remove();
         });
         return false;
     });
 
     // for dynamically created a tags
-    $(".tdl-content").on('click', "a", function() {
+    $(".tdl-content").on('click', "a", function () {
         var _li = $(this).parent().parent("li");
-        _li.addClass("remove").stop().delay(100).slideUp("fast", function() {
+        _li.addClass("remove").stop().delay(100).slideUp("fast", function () {
             _li.remove();
         });
         return false;
     });
 
 
-    
+
 
 
 
 })(jQuery);
+
+function delteCurriculo(id) {
+    Swal.fire({
+        title: 'Deseja realmente excluir este currículo?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/curriculo/' + id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'DELETE',
+                dataType: 'json',
+                success: function (resp) {
+                    alertaMessagem(resp.msg, 'success')
+                    document.getElementById('curriculo' + id).remove();
+                },
+                error: function (resp) {
+                    alertaMessagem('Não foi possível tente novamente em alguns instantes', 'error')
+                }
+            })
+        }
+    })
+}

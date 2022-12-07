@@ -33,9 +33,10 @@ class HomeController extends Controller
 
             Session::flash('success', 'Bem vindo, ' . auth()->user()->name);
             return redirect()->route('monitor-atendimento.index');
-        } else {
-            Auth::logout();
-            return redirect()->route('home');
+
+        }else{
+            // Auth::logout();
+            return redirect()->route('home_cliente');
         }
         //  view('admin.home');
     }

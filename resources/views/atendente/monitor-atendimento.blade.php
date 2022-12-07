@@ -4,7 +4,7 @@
     <style>
         .spanSituacao {
             border-radius: 5px;
-            background-color: green;
+            /* background-color: green; */
             color: white;
         }
     </style>
@@ -28,7 +28,7 @@
             @csrf
             <div class="page-header">
                 <div class="page-title">
-                    <h6>Seu status agora é <span class="spanSituacao">{{ $user->atendente->situacao }}</span>, não feche
+                    <h6>Seu status agora é <span class="spanSituacao" style="background-color: {{$background}}">{{ $user->atendente->situacao }}</span>, não feche
                         esta janela ela te mantém online no atendimento. Caso queira se deslogar utilize o botão com seu
                         nome no canto direito superior.</h6>
                 </div>

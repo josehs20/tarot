@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appCliente')
 <link rel="stylesheet" href="css/login/css/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @section('content')
@@ -78,8 +78,13 @@
                             <div class="img" style="background-image: url(imgs/logo.jpg);"></div>
                             <div class="login-wrap p-4 p-md-5">
                                 <div class="d-flex">
-                                    <div class="w-100">
+                                    <div class="d-flex justify-content-between w-100">
                                         <h3 class="mb-4">Entrar</h3>
+
+                                        <a href="{{route('register')}}" style="font-size: 18px;" class="mb-0 ">Registre-se
+
+
+                                        </a>
                                     </div>
                                     {{-- <div class="w-100">
 									<p class="social-media d-flex justify-content-end">
@@ -133,6 +138,18 @@
                                                         <a href="#">Forgot Password</a>
                                                     </div> --}}
                                     </div>
+                                    <div class="d-flex justify-content-start w-100">
+                                      
+                                            <label class="mb-0">Ainda não possui conta ?
+                                                <a href="{{route('register')}}" style="font-size: 18px;" class="mb-0">Registre-se
+
+
+                                                </a>
+                                            </label>
+                                        
+                                       
+                                    </div>
+                             
                                 </form>
                                 {{-- <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p> --}}
                             </div>
@@ -142,16 +159,16 @@
             </div>
         </section>
     </div>
-    <script src="{{asset('js/alertas.js')}}"></script>
-    <script src="{{asset('js/login/js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/login/js/popper.js')}}"></script>
-    <script src="{{asset('js/login/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/login/js/main.js')}}"></script>
+    <script src="{{ asset('js/alertas.js') }}"></script>
+    <script src="{{ asset('js/login/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/login/js/popper.js') }}"></script>
+    <script src="{{ asset('js/login/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/login/js/main.js') }}"></script>
 
     <script defer>
         $(function($) {
             var cookie = {};
-    
+
             document.cookie.split(';').forEach(function(el) {
                 let [k, v] = el.split('=');
                 cookie[k.trim()] = v;
@@ -163,5 +180,4 @@
             }
         });
     </script>
- 
 @endsection

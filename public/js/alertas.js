@@ -1,14 +1,14 @@
 
-function alertaMessagem(msg,icon, text = '', button = false) {
+function alertaMessagem(msg, icon, text = '', button = false) {
 
-    Swal.fire({
-        position: 'top-end',
-        icon: icon,
-        title: msg,
-        text: text,
-        showConfirmButton: button,
-        timer: 2500
-      })
+  Swal.fire({
+    position: 'top-end',
+    icon: icon,
+    title: msg,
+    text: text,
+    showConfirmButton: button,
+    timer: 2500
+  })
 }
 
 function alertaSimples(msg, icon, time = 3000) {
@@ -23,9 +23,11 @@ function alertaSimples(msg, icon, time = 3000) {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  
+
   Toast.fire({
     icon: icon,
     title: msg
   })
 }
+
+

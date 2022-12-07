@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Curriculo;
 
 class EstatisticaController extends Controller
 {
@@ -15,6 +16,15 @@ class EstatisticaController extends Controller
     public function index()
     {
       return view('admin.dashboard.estatisticas');
+    }
+
+    public function count_notificacoes()
+    {
+        $data = [
+            'curriculos' => Curriculo::where('status', 0)->count()
+        ];
+
+       return response()->json($data);
     }
 
     /**

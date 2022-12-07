@@ -17,7 +17,11 @@ class MonitorAtendimentoController extends Controller
     {
         $atendimentos = [];
         $user = User::with('atendente')->find(auth()->user()->id);
-        return view('atendente.monitor-atendimento', compact('atendimentos', 'user'));
+
+        $background = ['online' => '#008000', 'offline' => '#FF0000', 'ocupado' => '#FF8C00'];
+        $background = $background[$user->atendente->situacao];
+
+        return view('atendente.monitor-atendimento', compact('atendimentos', 'user', 'background'));
     }
 
     /**
